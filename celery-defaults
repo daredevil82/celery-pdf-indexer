@@ -1,0 +1,32 @@
+# Celery init.d script settings configuration.  Assumes you are using the init.d script provided in the Celery repository.
+# Paths are defined for default ubuntu user for AWS EC2 instances
+
+
+# Define worker nodes
+CELERYD_NODES="index_worker_1_1 index_worker_1_2 index_worker_1_3 index_worker_1_4 index_worker_1_5 index_worker_1_6"
+
+# Celery binary executable path, located in project virtualenv
+CELERYD_BIN="/home/ubuntu/.virtualenvs/project/bin/celery"
+
+CELERYD_CHDIR="/home/ubuntu/project/indexer"
+
+CELERY_APP="index.tasks"
+
+# process and log file location, log level
+CELERYD_LOG_LEVEL="INFO"
+CELERYD_LOG_FILE="/home/ubuntu/project/logs/%N.log"
+CELERYD_PID_FILE="/home/ubuntu/project/celery_%N.pid"
+
+# Options, define broker and flags
+CELRYD_OPTS="-b amqp://$USER:$PASSWORD@rabbitmq.domain.com:5672/$VHOST -Q index -Ofair --maxtasksperchild=1"
+
+# Ensure worker fetches one task at a time
+CELERYD_PREFETCH_MULTIPLIER=1
+
+# Celery result backend
+CELERY_RESULT_BACKEND="redis://:$PASSWORD@redis.domain.com:6379/1"
+
+# Worker may need to run tasks that require directory creation, so assign process as user
+CELERYD_USER="ubuntu"
+CELERYD_GROUP="ubuntu"
+CELERY_CREATE_DIRS=1

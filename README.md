@@ -1,2 +1,8 @@
 # celery-pdf-indexer
-Code &amp; slides for 1-26 Server Side &amp; Performance Meetup
+
+Slides and code that were the basis for the Jan 26 meetup of the 
+[Server Side Engineering &amp; Performance](https://www.meetup.com/Maine-Server-Side-Engineering-and-Performance-Meetup/events/234733550/) group 
+
+Celery task has been stripped to remove company-specific information, but should function as a base for
+usage.
+
